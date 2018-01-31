@@ -26,9 +26,9 @@ function setup() {
   circleDiameter = width/NUM_CIRCLES;
   circleRadius = circleDiameter/2;
 
-  rVal = 255;
-  gVal = 0;
-  bVal = 0;
+  rVal = 0;
+  gVal = 102;
+  bVal = 255;
 }
 
 function draw() {
