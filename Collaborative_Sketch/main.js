@@ -6,6 +6,9 @@
 /*global ellipse*/
 /*global mouseX*/
 /*global mouseY*/
+/*global $*/
+/*global saveCanvas*/
+
 // Initialize Firebase
         var config = {
             apiKey: "AIzaSyBvTJsIrOL9mDicBEZmRYYb9018T2VEDN0",
@@ -28,7 +31,10 @@ function setup(){
     pointsData.on("child_added", function (point){
     points.push(point.val());
 });
-
+    pointsData.on("child_removed", function (point){
+        points.push(point.val());
+    });
+    
 canvas.mousePressed(drawPoint);
 canvas.mouseMoved(drawPointIfMousePressed);
 }
@@ -49,5 +55,19 @@ function draw(){
         if(mouseIsPressed){
             drawPoint();
         }
+    }
+    
+    $("#saveDrawing").on("click", saveDrawing);
+    
+    function saveDrawing(){
+        saveCanvas();
+    }
+    
+    $("#clearDrawing").on("click", clearDrawing);
+    
+    function clearDrawing(){
+        pointsData.remove();
+        points = [];
+        
     }
 
